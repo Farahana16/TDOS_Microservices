@@ -73,6 +73,12 @@ app.post('/view', function (req, res) {
 });
 
 //port or server
-var server = app.listen(8085, function () {
-    console.log('Node server is running..');
+//var server = app.listen(8085, function () {
+    //console.log('Node server is running..');
+//});
+
+const { PORT=3000, LOCAL_ADDRESS='0.0.0.0' } = process.env
+server.listen(PORT, LOCAL_ADDRESS, () => {
+  const address = server.address();
+  console.log('server listening at', address);
 });
