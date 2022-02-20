@@ -48,6 +48,7 @@ app.post('/signup', function (req, res) {
         if (err) throw err;
         console.log("Connected!");
         var sql = "INSERT into customer(custPwd, custPhoneNum, custEmail, custUsername) values('"+pass+"','"+phoneNumber+"','"+email+"','"+username+"')";
+      //insert into customers(custPwd, custPhoneNum, custEmail, custUsername)values(?,?,?,?)
         con.query(sql, function (err, result) {
           if (err) throw err;
           res.sendFile('index.html', { root:__dirname });
