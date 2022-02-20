@@ -4,10 +4,10 @@ var mysql = require('mysql');
 
 //dab connection
 var con = mysql.createConnection({
-  host: "us-cdbr-east-05.cleardb.net",
-  user: "b090fb7f4bf538",
-  password: "194dc125",
-  database: "heroku_bd549570b7b7d02"
+  host: "eu-cdbr-west-02.cleardb.net",
+  user: "b103e963bf8806",
+  password: "1a371198",
+  database: "heroku_7fab5d5a1f5a6b9"
 });
 
 //mysql://b090fb7f4bf538:194dc125@us-cdbr-east-05.cleardb.net/heroku_bd549570b7b7d02?reconnect=true
@@ -28,7 +28,7 @@ app.post('/submit-data', function (req, res) {
     var username = req.body.username;
     var pass = req.body.pass;
 
-    var sql = 'SELECT * FROM customers WHERE custUsername = ? OR custPwd = ?';
+    var sql = 'SELECT * FROM customer WHERE custUsername = ? OR custPwd = ?';
     con.query(sql, [username, pass], function (err, result) {
     if (err) throw err;
         res.sendFile('sucessfullylogin.html', { root:__dirname });
@@ -47,7 +47,7 @@ app.post('/signup', function (req, res) {
     con.connect(function(err) {
         if (err) throw err;
         console.log("Connected!");
-        var sql = "INSERT into customers(custPwd, custPhoneNum, custEmail, custUsername) values('"+pass+"','"+phoneNumber+"','"+email+"','"+username+"')";
+        var sql = "INSERT into customer(custPwd, custPhoneNum, custEmail, custUsername) values('"+pass+"','"+phoneNumber+"','"+email+"','"+username+"')";
         con.query(sql, function (err, result) {
           if (err) throw err;
           res.sendFile('index.html', { root:__dirname });
